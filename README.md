@@ -1,5 +1,15 @@
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
+## For This To Work You Must Run
+
+This client
+
+A 3001 server (json)
+https://www.npmjs.com/package/json-server
+
+rtmp server on 8000 and open on port 1935
+https://github.com/illuspas/Node-Media-Server
+
 ## Available Scripts
 
 In the project directory, you can run:
