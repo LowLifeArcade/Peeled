@@ -23,6 +23,10 @@ class PeelsList extends React.Component {
 
   renderList() {
     return this.props.peels.map(peel => {
+      if (this.props.currentUserId !== peel.userId) {
+        return null;
+      }
+
       return (
         <div className="item" key={peel.id}>
           {this.renderAdmin(peel)}
