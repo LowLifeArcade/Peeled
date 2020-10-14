@@ -1,5 +1,8 @@
 import React from 'react';
 import { Field, reduxForm } from 'redux-form';
+import { connect } from 'react-redux';
+import { createPeel } from '../../actions'
+
 
 class PeelsCreate extends React.Component {
   renderError({ error, touched }) {
@@ -24,8 +27,8 @@ class PeelsCreate extends React.Component {
   }
 
   // use this to send to API for autonaming idea
-  onSubmit(formValues) {
-    console.log(formValues);
+  onSubmit = (formValues) => {
+    this.props.createPeel(formValues);
   }
 
   render() {
@@ -54,7 +57,9 @@ const validate = (formValues) => {
   return errors;
 }
 
-export default reduxForm({
+const formWrapped = reduxForm({
   form: 'peelsCreate',
   validate
 })(PeelsCreate);
+
+export default connect(null, { createPeel })(formWrapped);

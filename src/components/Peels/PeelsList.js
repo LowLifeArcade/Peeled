@@ -1,7 +1,74 @@
 import React from 'react'
+import { connect } from 'react-redux';
+import { fetchPeels } from '../../actions';
+import { Link } from 'react-router-dom';
 
-const PeelsList = () => {
-  return <div>PeelsList</div>
-};
+class PeelsList extends React.Component {
+  componentDidMount() {
+    this.props.fetchPeels();
+  }
 
-export default PeelsList;
+  renderAdmin(peel) {
+    if (peel.userId === this.props.currentUserId) {
+      return (
+        <div className="right floated content">
+          <button className="ui button primary">
+            Edit
+          </button>
+          <button className="ui button negative">
+            Delete
+          </button>
+        </div>
+      )
+    }
+  }
+
+  renderList() {
+    return this.props.peels.map(peel => {
+      return (
+        <div className="item" key={peel.id}>
+          {this.renderAdmin(peel)}
+          <i className="large middle aligned icon camera" />
+          <div className="content">
+            {peel.title}
+            <div className="description">{peel.description}</div>
+          </div>
+          
+        </div>
+      )
+    })
+  }
+
+  renderCreate() {
+    if (this.props.isSignedIn) {
+      return (
+        <div style={{textAlign: 'right '}} >
+          <Link to="/peels/new" className="ui button primary" >
+            New Peel
+          </Link>
+        </div>
+      )
+    }
+  }
+
+  render() {
+    return (
+      <div>
+        <h2>Peels</h2>
+        <div className="ui celled list">{this.renderList()} </div>
+        {this.renderCreate()}
+      </div>
+    )
+  }
+
+}
+
+const mapStateToProps = (state) => {
+  return { 
+    peels: Object.values(state.peels),
+    currentUserId: state.auth.userId,
+    isSignedIn: state.auth.isSignedIn
+   }
+}
+
+export default connect(mapStateToProps, { fetchPeels })(PeelsList);

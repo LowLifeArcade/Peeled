@@ -1,16 +1,17 @@
 import React from 'react';
-import { BrowserRouter, Route } from 'react-router-dom';
+import { Router, Route } from 'react-router-dom';
 import PeelsCreate from './Peels/PeelsCreate'
 import PeelsDelete from './Peels/PeelsDelete'
 import PeelsEdit from './Peels/PeelsEdit'
 import PeelsList from './Peels/PeelsList'
 import PeelsShow from './Peels/PeelsShow'
 import Header from './Header'
+import history from '../history'
 
 const App = () => {
   return (
     <div className="ui container" >
-      <BrowserRouter>
+      <Router history={history} >
         <div>
           <Header />
           <Route path="/" exact component={PeelsList} />
@@ -19,7 +20,7 @@ const App = () => {
           <Route path="/peels/delete" exact component={PeelsDelete} />
           <Route path="/peels/show" exact component={PeelsShow} />
         </div>
-      </BrowserRouter>
+      </Router>
     </div>
   );
 }
