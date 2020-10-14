@@ -13,9 +13,9 @@ class PeelsList extends React.Component {
       return (
         <div className="right floated content">
           <Link to={`/peels/edit/${peel.id}`} className="ui button primary" >Edit</Link>
-          <button className="ui button negative">
+          <Link to={`/peels/delete/${peel.id}`} className="ui button negative">
             Delete
-          </button>
+          </Link>
         </div>
       )
     }

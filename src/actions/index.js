@@ -54,5 +54,6 @@ export const deletePeel = (id) => async dispatch => {
   await peels.delete(`/peels/${id}`);
 
   dispatch({ type: DELETE_PEEL, payload: id })
+  history.push('/');
 }
 
