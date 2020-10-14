@@ -28,10 +28,15 @@ class PeelsList extends React.Component {
           {this.renderAdmin(peel)}
           <i className="large middle aligned icon camera" />
           <div className="content">
-            {peel.title}
+            <Link
+              to={`/peels/${peel.id}`}
+              className="header"
+            >
+              {peel.title}
+            </Link>
             <div className="description">{peel.description}</div>
           </div>
-          
+
         </div>
       )
     })
@@ -40,7 +45,7 @@ class PeelsList extends React.Component {
   renderCreate() {
     if (this.props.isSignedIn) {
       return (
-        <div style={{textAlign: 'right '}} >
+        <div style={{ textAlign: 'right ' }} >
           <Link to="/peels/new" className="ui button primary" >
             New Peel
           </Link>
@@ -62,11 +67,11 @@ class PeelsList extends React.Component {
 }
 
 const mapStateToProps = (state) => {
-  return { 
+  return {
     peels: Object.values(state.peels),
     currentUserId: state.auth.userId,
     isSignedIn: state.auth.isSignedIn
-   }
+  }
 }
 
 export default connect(mapStateToProps, { fetchPeels })(PeelsList);
