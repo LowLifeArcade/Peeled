@@ -44,9 +44,10 @@ export const fetchPeel = (id) => async dispatch => {
 }
 
 export const editPeel = (id, formValues) => async dispatch => {
-  const response = await peels.put(`/peels${id}`, formValues);
+  const response = await peels.patch(`/peels/${id}`, formValues);
 
-  dispatch({ type:EDIT_PEEL, payload: response.data })
+  dispatch({ type:EDIT_PEEL, payload: response.data });
+  history.push('/');
 }
 
 export const deletePeel = (id) => async dispatch => {
@@ -54,3 +55,4 @@ export const deletePeel = (id) => async dispatch => {
 
   dispatch({ type: DELETE_PEEL, payload: id })
 }
+

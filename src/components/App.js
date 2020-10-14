@@ -16,7 +16,7 @@ const App = () => {
           <Header />
           <Route path="/" exact component={PeelsList} />
           <Route path="/peels/new" exact component={PeelsCreate} />
-          <Route path="/peels/edit" exact component={PeelsEdit} />
+          <Route path="/peels/edit/:id" exact component={PeelsEdit} />
           <Route path="/peels/delete" exact component={PeelsDelete} />
           <Route path="/peels/show" exact component={PeelsShow} />
         </div>
